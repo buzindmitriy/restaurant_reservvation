@@ -1,0 +1,45 @@
+{% extends 'reservations/base.html' %}
+
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+<h2>Мои бронирования</h2>
+
+{% if reservations %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Столик</th>
+                    <th>Статус</th>
+                    <th>Дата создания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.date }}</td>
+                    <td>{{ reservation.time_slot }}</td>
+                    <td>{{ reservation.table }}</td>
+                    <td>
+                        <span class="badge bg-{% if reservation.status == 'confirmed' %}success{% elif reservation.status == 'cancelled' %}danger{% else %}warning{% endif %}">
+                            {{ reservation.get_status_display }}
+                        </span>
+                    </td>
+                    <td>{{ reservation.created_at|date:"d.m.Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        У вас пока нет бронирований. <a href="{% url 'make_reservation' %}">Забронируйте столик сейчас</a>.
+    </div>
+{% endif %}
+
+<a href="{% url 'make_reservation' %}" class="btn btn-primary">Новое бронирование</a>
+<a href="{% url 'home' %}" class="btn btn-secondary">На главную</a>
+{% endblock %}
