@@ -1,0 +1,39 @@
+{% extends 'reservations/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Добро пожаловать в ресторан</h1>
+        <p class="lead mb-4">Забронируйте столик онлайн и получите лучший опыт!</p>
+        <div class="mt-5">
+            <a href="{% url 'make_reservation' %}" class="btn btn-primary btn-lg me-3">Забронировать столик</a>
+            <a href="{% url 'reservation_list' %}" class="btn btn-outline-primary btn-lg">Мои бронирования</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">О ресторане</h5>
+                <p class="card-text">Наш ресторан предлагает изысканную кухню и уютную атмосферу для отдыха с семьей или друзьями.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Как это работает</h5>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">Выберите дату и время</li>
+                    <li class="list-group-item">Выберите свободный столик</li>
+                    <li class="list-group-item">Подтвердите бронирование</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
